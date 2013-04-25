@@ -7,7 +7,7 @@
 # All rights reserved - Do Not Redistribute
 #
 include_recipe "apache2"
-include_recipe "tomcat"
+include_recipe "tomcat7"
 #remote_file "/tmp/ls_plms.war" do
 #  source "http://hq-fusdev02.ptcnet.ptc.com/builds/ls_plms.war"
   
@@ -22,18 +22,20 @@ service "apache2" do
 action [ :start, :enable ]
 end
 
-service "tomcat" do
+service "tomcat7" do
+service_name "tomcat7"
 action :stop
 end
 
-tomcat_webapp = "/var/lib/tomcat6/webapps/ROOT"
+#tomcat_webapp = "/var/lib/tomcat6/webapps/ROOT"
 
-template "#{tomcat_webapp}/index.html" do
-source "index.html.erb"
+#template "#{tomcat_webapp}/index.html" do
+#source "index.html.erb"
 
-mode "0644"
-end
+#mode "0644"
+#end
 
-service "tomcat" do
+service "tomcat7" do
+service_name "tomcat7"
 action :start
 end
